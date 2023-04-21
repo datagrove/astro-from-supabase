@@ -12,7 +12,7 @@ const { href, title, body } = Astro.props;
 	<a href={href}>
 		<h2>
 			{title}
-			<span>&rarr;</span>
+			<!-- <span>&rarr;</span> -->
 		</h2>
 		<p>
 			{body}
@@ -21,6 +21,7 @@ const { href, title, body } = Astro.props;
 </li>
 <style>
 	.link-card {
+		/* width: 50%; */
 		list-style: none;
 		display: flex;
 		padding: 0.25rem;

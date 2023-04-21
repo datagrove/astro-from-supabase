@@ -1,9 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Card from '../components/common/Card.astro';
+import Header from '../components/common/Header.astro';
+import Intro from '../components/home/Intro.astro';
+import ProductHighlights from '../components/home/ProductHighlights.astro';
+import Footer from '../components/common/Footer.astro';
 ---
 
 <Layout title="Welcome to Astro.">
+	<Header />
+	<Intro />
+	<ProductHighlights />
 	<main>
 		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
 		<p class="instructions">
@@ -33,6 +40,7 @@ import Card from '../components/Card.astro';
 			/>
 		</ul>
 	</main>
+	<Footer />
 </Layout>
 
 <style>

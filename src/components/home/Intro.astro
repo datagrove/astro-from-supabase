@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Button from "../common/Button.astro";
+---
+<Layout title="Datagrove Intro">
+    <div>
+        <div class="mb-6">
+            <h1 class="text-4xl text-green-950 font-bold" set:html="Datagrove" />
+            <h1 class="text-4xl text-blue-800 font-bold" set:html="Confident Data Sharing" />
+        </div>
+
+        <div class="flex">
+            <Button />
+            <Button />
+            <Button />
+        </div>
+    </div>
+</Layout>
