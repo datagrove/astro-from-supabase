@@ -1,17 +1,28 @@
-<header>
+<div>
     <div class="flex justify-between">
-        <div class="flex items-center">
-            <img 
-                class="w-8 m-2"    
-                src="/images/bright_green_circle.png" alt="datagrove logo"
-            />
-            <p set:html="Datagrove" />
-        </div>
+        <a href="/">
+            <div class="flex items-center">
+                <img 
+                    class="w-8 m-2"    
+                    src="/images/bright_green_circle.png" alt="datagrove logo"
+                />
+                <p class="text-dgBlue font-semibold text-lg" set:html="Datagrove" />
+            </div>
+        </a>
 
         <div class="flex items-center">
-            <a href="/">Home</a>
-            <a href="/about">About Us</a>
-            <a href="/contact">Contact</a>
+            <a 
+                class="text-dgGreen pr-6 text-lg" 
+                href="/">Home
+            </a>
+            <a 
+                class="text-dgBlue pr-6 text-lg"
+                href="/about">About Us
+            </a>
+            <a 
+                class="text-dgBlue pr-6 text-lg"
+                href="/contact">Contact
+            </a>
         </div>
     </div>
-</header>
+</div>

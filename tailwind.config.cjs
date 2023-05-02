@@ -1,19 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const { colors: defaultColors } = require('tailwindcss/defaultTheme')
 const defaultTheme = require('tailwindcss/defaultTheme');
-
-// const colors = {
-// 	...defaultColors,
-// 	...{
-// 		"dgGreen": {
-// 			"500": "435E1C"
-// 		},
-// 		"accent": "812458",
-// 		"dgBlue": {
-// 			"500": "245881"
-// 		}
-// 	}
-// }
 
 module.exports = {
 	content: [
@@ -26,9 +12,9 @@ module.exports = {
 		// "colors": colors,
 		extend: {
 			colors: {
-				dgGreen: "435E1C",
-				accent: "812458",
-				dgBlue: "245881"
+				dgGreen: "#435E1C",
+				accent: "#812458",
+				dgBlue: "#245881"
 			},
 			gridTemplateColumns: {
 				'card': 'repeat(auto-fit, minmax(24ch, 1fr))'

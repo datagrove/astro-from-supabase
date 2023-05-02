@@ -1,18 +1,19 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Button from "../common/Button.astro";
+import PrimaryButton from "../common/PrimaryButton.astro";
+import SecondaryButton from '../common/SecondaryButton.astro';
 ---
-<Layout title="Datagrove Intro">
-    <div>
-        <div class="mb-6">
-            <h1 class="text-4xl text-green-950 font-bold" set:html="Datagrove" />
+<div>
+    <div class="mx-4 md:mx-16">
+        <div class="my-6">
+            <h1 class="text-4xl text-dgGreen font-bold py-2" set:html="Datagrove" />
             <h1 class="text-4xl text-blue-800 font-bold" set:html="Confident Data Sharing" />
         </div>
 
         <div class="flex">
-            <Button />
-            <Button />
-            <Button />
+            <PrimaryButton />
+            <SecondaryButton />
+            <SecondaryButton />
         </div>
     </div>
-</Layout>
+</div>
