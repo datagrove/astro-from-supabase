@@ -1,0 +1,25 @@
+import { headerData } from "../../data";
+
+const navLinks = [
+    {
+        text: "Home",
+        href: "/"
+    },
+    {
+        text: "About Us",
+        href: "/about"
+    },
+    {
+        text: "Solutions",
+        links: [
+            {
+                text: "Homeschool",
+                href: "/pawpaw"
+            }
+        ]
+    },
+    {
+        text: "Contact",
+        href: "/contact"
+    }
+]

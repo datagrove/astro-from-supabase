@@ -3,9 +3,8 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
 	content: [
-		'./src/components/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}', 
-		'.src/layouts/**/*.astro', 
-		'.src/pages/**/*.astro'
+		'./src/**/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}', 
+		'.src/data.tsx',
 	],
 	darkMode: "class",
 	theme: {
