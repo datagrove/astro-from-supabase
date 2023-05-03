@@ -1,3 +1,30 @@
+---
+const navLinks = [
+    {
+        text: "Home",
+        href: "/"
+    },
+    {
+        text: "About Us",
+        href: "/about"
+    },
+    {
+        text: "Solutions",
+        links: [
+            {
+                text: "Homeschool",
+                href: "/pawpaw"
+            }
+        ]
+    },
+    {
+        text: "Contact",
+        href: "/contact"
+    }
+]
+
+---
+
 <div>
     <div class="flex justify-between">
         <a href="/">
@@ -11,18 +38,42 @@
         </a>
 
         <div class="flex items-center">
-            <a 
+            <!-- <a 
                 class="text-dgGreen pr-6 text-lg" 
                 href="/">Home
             </a>
             <a 
                 class="text-dgBlue pr-6 text-lg"
                 href="/about">About Us
-            </a>
-            <a 
+            </a> -->
+
+
+            <ul>
+                {
+                    navLinks.map(({ text, href, links}) => ( 
+                    
+                        <li>
+                            <a class="text-dgGreen pr-6 text-lg" href={ href }>{ text }</a>
+                        </li>
+
+                    ))
+                }
+
+                Test accessing links 
+
+                { navLinks.map(item => (
+                    item?.links[0]?.text
+                ))}
+
+            </ul>
+
+
+
+
+            <!-- <a 
                 class="text-dgBlue pr-6 text-lg"
                 href="/contact">Contact
-            </a>
+            </a> -->
         </div>
     </div>
 </div>
