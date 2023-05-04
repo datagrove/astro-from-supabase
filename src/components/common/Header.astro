@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon';
+
 interface Link {
   text?: string;
   href?: string;
@@ -9,9 +11,10 @@ interface Link {
 interface MenuLink extends Link {
   links?: Array<Link>;
 }
- export interface Props {
+
+export interface Props {
     links?: Array<MenuLink>;
- }
+}
  
 const {
     links = [],
@@ -19,45 +22,19 @@ const {
 
 ---
 <header>
-
-    { links.map(( item ) => (
-        !item?.links?.length ? ( 
-            <a class="mx-2" href={ item.href }>{ item.text }</a>    
-        ) : (
-        item.links.map(( link ) => (
-            link.text
-        ))
-        
-        )
-    ))}
-
-    <br />
-
-    { links.map(( item ) => (
-        <a class="mx-2" href={ item.href }>{ item.text }</a>    
-
-        // { links?.length ? (
-        //     { links.map(( link ) => (
-        //         <a href={ link.href }>{ link.text }</a>
-        //     ))}
-        // ) : (
-        //     <p>TESTESTESTEST</p>
-        // )}
-
-
-    ))}
-
-    <div>
+    <div class="fixed top-0 w-full">
         <div class="flex justify-between">
-            <a href="/">
-                <div class="flex items-center">
-                    <img 
-                        class="w-8 m-2"    
-                        src="/images/bright_green_circle.png" alt="datagrove logo"
-                    />
-                    <p class="text-dgBlue font-semibold text-lg" set:html="Datagrove" />
-                </div>
-            </a>
+            <div>
+                <a href="/">
+                    <div class="flex items-center">
+                        <img 
+                            class="w-8 m-2"    
+                            src="/images/bright_green_circle.png" alt="datagrove logo"
+                        />
+                        <p class="text-dgBlue font-semibold text-lg" set:html="Datagrove" />
+                    </div>
+                </a>
+            </div>
 
             <div class="flex items-center">
                 <ul class="flex flex-col pt-8 md:pt-0 md:flex-row md:self-center w-full md:w-auto text-xl md:text-base">
@@ -65,26 +42,48 @@ const {
                       links.map(({ text, href, links }) => (
                         <li class={links?.length ? 'dropdown' : ''}>
                           {links?.length ? (
-                            <>
-                              <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
-                                {links.map(({ text: text2, href: href2 }) => (
-                                  <li>
+                            <div class="group">
+                              <div>
+                                <button 
+                                  type="button" 
+                                  id="menu-button" 
+                                  aria-expanded="true" 
+                                  aria-haspopup="true" 
+                                  class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
+                                  
+                                >
+                                  {text} 
+                                  <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 hidden md:inline" />
+                                </button>
+                              </div>
+
+                              <div 
+                                class="invisible group-hover:visible absolute mt-1 w-48 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" 
+                                role="menu" 
+                                aria-orientation="vertical" 
+                                aria-labelledby="menu-button" 
+                                tabindex="-1"
+                              >
+                                <div class="py-1" role="none">
+                                  {links.map(({ text: text2, href: href2 }) => (
                                     <a
                                       class="first:rounded-t last:rounded-b md:hover:bg-gray-200 dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap"
-                                      href={href2}
+                                      href={ href2 }
+                                      role="menuitem"
                                     >
-                                      {text2}
+                                      { text2 }
                                     </a>
-                                  </li>
-                                ))}
-                              </ul>
-                            </>
+                                  ))}
+                                  
+                                </div>
+                              </div>
+                            </div>
                           ) : (
                             <a
                               class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-                              href={href}
+                              href={ href }
                             >
-                              {text}
+                              { text }
                             </a>
                           )}
                         </li>
@@ -95,3 +94,4 @@ const {
         </div>
     </div>
 </header>
+

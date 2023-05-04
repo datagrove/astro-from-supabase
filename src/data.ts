@@ -19,11 +19,11 @@ export const headerData = {
                     text: "Test another link",
                     href: "/"
                 }
-            ]
+            ],
         },
         {
             text: "Contact",
             href: "/contact"
-        }
+        },
     ]
 }

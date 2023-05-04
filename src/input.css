@@ -1,3 +1,26 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@layer components {
+    .h1-style {
+        font-size: xx-large;
+        color: #435E1C;
+        font-weight: 500;
+        padding-bottom: 12px;
+    }
+    .p-style {
+        font-size: medium;
+        color: #245881;
+        padding-bottom: 12px;
+        font-weight: 300;
+    }
+    .section-div {
+        margin: 24px 0px
+    }
+    .link-style {
+        color: #812458;
+        text-decoration: none;
+        font-weight: 500;
+    }
+}
