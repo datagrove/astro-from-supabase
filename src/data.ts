@@ -15,10 +15,6 @@ export const headerData = {
                     text: "Homeschool",
                     href: "/pawpaw"
                 },
-                {
-                    text: "Test another link",
-                    href: "/"
-                }
             ],
         },
         {
@@ -27,3 +23,4 @@ export const headerData = {
         },
     ]
 }
+

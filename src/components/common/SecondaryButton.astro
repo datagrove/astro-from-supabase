@@ -1,7 +1,19 @@
+---
+interface Props {
+    text: string;
+    href: string;
+}
+
+const { text, href } = Astro.props;
+---
+
 <div>
-    <button
-        class="rounded-full bg-white border border-dgGreen px-2 md:px-6 py-1 md:py-2 mr-2 my-2 hover:bg-accent "
-    >
-        <p class="text-dgGreen text-xs md:text-base hover:text-white" set:html="Add Text" />
-    </button>
+    <a
+        href={ href }
+        >
+        <p 
+            class="text-dgGreen border border-dgGreen text-xs md:text-base hover:text-white px-4 py-2 bg-white hover:bg-accent rounded-full w-28 text-center mr-2" 
+            set:html={ text } 
+        />
+    </a>
 </div>

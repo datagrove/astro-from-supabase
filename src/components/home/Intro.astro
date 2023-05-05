@@ -1,7 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import PrimaryButton from "../common/PrimaryButton.astro";
-import SecondaryButton from '../common/SecondaryButton.astro';
+import Button from "../common/Button.astro";
 ---
 <div>
     <div class="mx-4 md:mx-16">
@@ -11,9 +9,9 @@ import SecondaryButton from '../common/SecondaryButton.astro';
         </div>
 
         <div class="flex">
-            <PrimaryButton />
-            <SecondaryButton />
-            <SecondaryButton />
+            <Button text="Solutions" href="/pawpaw" type="primary" />
+            <Button text="About Us" href="/about" type="secondary"/>
+            <Button text="Connect" href="/contact" type="secondary" />
         </div>
     </div>
 </div>

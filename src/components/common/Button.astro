@@ -1,0 +1,47 @@
+---
+interface Props {
+    text: string;
+    href: string;
+    type?: string;
+}
+
+const { 
+    text, 
+    href, 
+    type, 
+} = Astro.props;
+---
+
+<div>
+    <a
+        href={ href }
+    >
+        <p 
+            class={ type }
+            set:html={ text } 
+        />
+    </a>
+</div>
+
+<style>
+    .primary, .secondary {
+        border-radius: 20px;
+        width: 7em;
+        margin-right: 1em;
+        padding: 8px 12px 8px 12px;
+        text-align: center;
+    }
+    .primary {
+        background-color: #435E1C;
+        color: white;
+    }
+    .secondary {
+        background-color: white;
+        color: #435E1C;
+        border: 1px solid #435E1C;
+    }
+    .primary:hover, .secondary:hover {
+        background-color: #812458;
+        color: white;
+    }
+</style>
