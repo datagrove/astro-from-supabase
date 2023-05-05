@@ -2,7 +2,7 @@
 layout: ../../src/layouts/Layout.astro
 ---
 
-<div class="terms-div" markdown="1">
+<div class="md-div" markdown="1">
 
 # Terms and Conditions
 
@@ -107,33 +107,33 @@ Email Address: legal@datagrove.com
 </div>
 
 <style>
-.terms-div {
+.md-div {
     margin: 48px 48px 148px 48px;
 }
-.terms-div > h1 {
+.md-div > h1 {
     font-size: xx-large;
     font-weight: 500;
     color: #435E1C;
 }
-.terms-div > h2 {
+.md-div > h2 {
     margin-bottom: 8px;
     font-weight: bold;
     color: #245881;
     margin-top: 20px;
 }
-.terms-div > p {
+.md-div > p {
     margin-bottom: 16px;
     color: #245881;
     font-weight: 300;
 }
-.terms-div > a {
+.md-div > a {
     color: #812458;
     font-weight: 400;
 }
-.terms-div > ul {
+.md-div > ul {
     padding-left: 8px;
 }
-.terms-div > ul > li {
+.md-div > ul > li {
     list-style-type: disc;
     color: #245881;
     font-weight: 300;
