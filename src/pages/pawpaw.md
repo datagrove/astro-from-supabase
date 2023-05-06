@@ -29,7 +29,13 @@ Sharing is the default for pawpaw models (so please don't include anything priva
 
 <style>
 .md-div {
-    margin: 48px 48px 148px 48px;
+    margin: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+    .md-div {
+        margin: 48px 48px 148px 48px;
+    }
 }
 .md-div > h1 {
     font-size: xx-large;
