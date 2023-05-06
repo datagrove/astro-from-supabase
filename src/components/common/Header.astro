@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon';
+import BurgerMenu from '../common/BurgerMenu.astro';
 
 interface Link {
   text?: string;
@@ -22,7 +23,7 @@ const {
 
 ---
 <header>
-    <div class="fixed top-0 w-full">
+    <div class="fixed top-0 w-full bg-white">
         <div class="flex justify-between items-center">
             <div>
                 <a href="/">
@@ -99,6 +100,7 @@ const {
                 height="15" 
                 viewBox="0 0 15 15"
                 class="m-2"
+                id="icon-menu-btn"
               >
                 <path 
                   fill="#245881" 
@@ -107,6 +109,10 @@ const {
                   clip-rule="evenodd"
                 />
               </svg>
+            </div>
+
+            <div class="flex items-center md:hidden">
+              <BurgerMenu />
             </div>
         </div>
     </div>
