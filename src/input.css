@@ -23,4 +23,16 @@
         text-decoration: none;
         font-weight: 500;
     }
+
+    @media (prefers-color-scheme: dark) {
+        .h1-style {
+            color: #73A92F;
+        }
+        .p-style {
+            color: #F5F5F5;
+        }
+        .link-style {
+            color: #2FA9A2;
+        }
+    }
 }

@@ -23,7 +23,7 @@ const {
 
 ---
 <header>
-    <div class="fixed top-0 w-full bg-white">
+    <div class="fixed top-0 w-full bg-white dark:bg-black">
         <div class="flex justify-between items-center">
             <div>
                 <a href="/">
@@ -32,7 +32,7 @@ const {
                             class="w-8 m-2"    
                             src="/images/bright_green_circle.png" alt="datagrove logo"
                         />
-                        <p class="text-dgBlue font-semibold text-lg" set:html="Datagrove" />
+                        <p class="text-dgSecondary dark:text-dgSecondaryDM font-semibold text-lg" set:html="Datagrove" />
                     </div>
                 </a>
             </div>
@@ -50,7 +50,7 @@ const {
                                   id="menu-button" 
                                   aria-expanded="true" 
                                   aria-haspopup="true" 
-                                  class="text-dgBlue font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
+                                  class="text-dgSecondary dark:text-dgSecondaryDM font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
                                   
                                 >
                                   {text} 
@@ -81,7 +81,7 @@ const {
                             </div>
                           ) : (
                             <a
-                              class="text-dgBlue font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
+                              class="text-dgSecondary dark:text-dgSecondaryDM font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
                               href={ href }
                             >
                               { text }

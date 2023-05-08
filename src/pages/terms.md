@@ -130,6 +130,10 @@ Email Address: legal@datagrove.com
     color: #812458;
     font-weight: 400;
 }
+p > a {
+    color: #812458;
+    font-weight: 400;
+}
 .md-div > ul {
     padding-left: 8px;
 }
@@ -139,6 +143,26 @@ Email Address: legal@datagrove.com
     font-weight: 300;
     margin-left: 1em;
     padding-bottom: 8px;
+}
+@media (prefers-color-scheme: dark) {
+    .md-div > h1 {
+        color: #73A92F;
+    }
+    .md-div > h2 {
+        color: #73A92F;
+    }
+    .md-div > p {
+        color: #F5F5F5;
+    }
+    .md-div > a {
+        color: #2FA9A2;
+    }
+    p > a {
+        color: #2FA9A2;
+    }
+    .md-div > ul > li {
+        color: #F5F5F5;
+    }
 }
 
 </style>

@@ -6,14 +6,18 @@ module.exports = {
 		'./src/**/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}', 
 		'.src/data.tsx',
 	],
-	darkMode: "class",
+
 	theme: {
 		// "colors": colors,
 		extend: {
 			colors: {
-				dgGreen: "#435E1C",
+				dgPrimary: "#435E1C",
+				dgSecondary: "#245881",
 				accent: "#812458",
-				dgBlue: "#245881"
+				dgPrimaryDM: "#73A92F",
+				dgSecondaryDM: "#F5F5F5",
+				accentDM: "#2FA9A2",
+				cardBackgroundDM: "#2F2F2F"
 			},
 			gridTemplateColumns: {
 				'card': 'repeat(auto-fit, minmax(24ch, 1fr))'

@@ -46,4 +46,19 @@ const {
         background-color: #812458;
         color: white;
     }
+
+    @media (prefers-color-scheme: dark) {
+        .primary {
+            background-color: #73A92F;
+            border: solid 1px white;
+        }
+        .secondary {
+            background-color: white;
+            color: #73A92F;
+            border: solid 1px #73A92F;
+        }
+        .primary:hover, .secondary:hover {
+            background-color: #2FA9A2;
+        }
+    }
 </style>
