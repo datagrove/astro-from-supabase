@@ -1,22 +1,141 @@
 ---
 import { Icon } from 'astro-icon';
+import { headerData } from '../../data';
+
+interface Link {
+  text?: string;
+  href?: string;
+  ariaLabel?: string;
+  icon?: string;
+}
+
+interface MenuLink extends Link {
+  links?: Array<Link>;
+}
 
 export interface Props {
   label?: string;
   class?: string;
   iconClass?: string;
   iconName?: string;
+  links?: Array<MenuLink>;
 }
 
 const {
   label = 'Toggle Menu',
   class:
-    className = 'ml-1.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center transition',
+    className = 'ml-1.5 text-gray-500 dark:text-gray-400 focus:outline-none rounded-lg text-sm p-2.5 inline-flex items-center transition',
   iconClass = 'w-6 h-6',
   iconName = 'tabler:menu',
+  links=[]
 } = Astro.props;
 ---
+<div class="relative">
+  <button type="button" id="menu-toggle" class={ className } aria-label={ label } data-aw-toggle-menu>
+    <Icon 
+      name={ iconName } 
+      class={ iconClass } 
+      optimize={ false } 
+      id="menu-button"
+    />
+  </button>
 
-<button type="button" class={ className } aria-label={ label } data-aw-toggle-menu>
-  <Icon name={ iconName } class={ iconClass } optimize={ false } id="menu-button"/>
-</button>
+  <button 
+    id="menu-close-btn"
+    class="hidden absolute -top-3 -left-7"
+  >
+    X
+  </button>
+
+  <div id="menu-link-div" class="absolute hidden w-screen h-screen top-5 right-0 bg-white px-8">
+
+    
+    <ul id="toggle-list" class="">     
+
+      { headerData.links.map(({ text, href, links }) => (
+        <li class={ links?.length ? 'dropdown' : ''}>
+          { links?.length ? (
+            <div class="group">
+              <div class="">
+                <button 
+                  id="solutions-btn"
+                  class="text-lg pt-4">
+                  { text } +
+                </button>  
+              </div>  
+
+              <div 
+                id="sub-menu"
+                class="hidden ml-4 pt-0 mt-0"
+                role="menu"
+                tabindex="-1"
+              >
+                <div role="none">
+                  { links?.map(({ text: text2, href: href2 }) => (
+                    <a 
+                      class="text-lg" 
+                      href={ href2 } 
+                      role="menuitem"
+                    >
+                      <p class="pt-3">{ text2 }</p>
+                    </a>
+                  ))}
+                </div>
+                
+              </div>
+
+              
+            </div>
+          ) : (
+            <a 
+              class="text-lg" 
+              href={ href }
+            >
+              <p class="pt-4">{ text }</p>
+            </a>
+          )}
+        </li>
+        // <a href={ link.href }><p>{ link.text }</p></a>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<script>
+  const menuIcon = document.getElementById('menu-button');
+  const menuButton = document.getElementById('menu-toggle');
+  const linkListDiv = document.getElementById('toggle-list');
+  const menuCloseBtn = document.getElementById('menu-close-btn');
+  const menuLinkDiv = document.getElementById('menu-link-div');
+  const solutionsBtn = document.getElementById('solutions-btn');
+  const subMenuDiv = document.getElementById('sub-menu');
+
+  solutionsBtn?.addEventListener('click', () => {
+    if(subMenuDiv?.classList.contains("hidden")) {
+      subMenuDiv.classList.remove("hidden")
+    } else {
+      subMenuDiv?.classList.add("hidden");
+    }
+  })
+
+  menuButton?.addEventListener('click', () => {
+    if(menuLinkDiv?.classList.contains("hidden")) {
+      menuLinkDiv.classList.remove("hidden");
+      menuLinkDiv.classList.add("inline");
+      menuButton.classList.add("hidden");
+      menuCloseBtn?.classList.remove("hidden");
+      menuCloseBtn?.classList.add("inline");
+    } 
+  })
+
+  menuCloseBtn?.addEventListener('click', () => {
+    if(menuLinkDiv?.classList.contains("inline")) {
+      menuLinkDiv.classList.remove("inline");
+      menuLinkDiv.classList.add("hidden");
+      menuButton?.classList.remove("hidden");
+      menuButton?.classList.add("inline");
+      menuCloseBtn?.classList.remove("inline");
+      menuCloseBtn?.classList.add("hidden");
+    }
+  })
+</script>
