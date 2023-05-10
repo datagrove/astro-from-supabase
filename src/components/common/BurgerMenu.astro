@@ -81,20 +81,22 @@ const {
     </svg>
   </button>
 
-  <div id="menu-link-div" class="absolute hidden w-screen h-screen top-5 right-0 bg-white dark:bg-black px-8">
+  <div id="menu-link-div" class="absolute hidden w-screen h-screen top-5 right-0 bg-white dark:bg-gray-900 px-8 py-8"> 
 
     
     <ul id="toggle-list" class="">     
 
       { headerData.links.map(({ text, href, links }) => (
         <li class={ links?.length ? 'dropdown' : ''}>
+          <div class="border-b pb-4 border-gray-300">
           { links?.length ? (
             <div class="group">
-              <div class="">
+              <div class="border-dgPrimary dark:border-dgPrimaryDM ">
                 <button 
                   id="solutions-btn"
-                  class="text-lg pt-4 text-dgSecondary dark:text-dgSecondaryDM">
-                  { text } +
+                  class="w-full text-lg pt-4 text-dgPrimary dark:text-dgPrimaryDM flex justify-between items-center">
+                  <div>{ text }</div>
+                  <div class="pr-2"> +</div>
                 </button>  
               </div>  
 
@@ -104,10 +106,10 @@ const {
                 role="menu"
                 tabindex="-1"
               >
-                <div role="none">
+                <div role="none" class="">
                   { links?.map(({ text: text2, href: href2 }) => (
                     <a 
-                      class="text-lg text-accent dark:text-accentDM" 
+                      class="text-lg text-dgSecondary dark:text-dgSecondaryDM" 
                       href={ href2 } 
                       role="menuitem"
                     >
@@ -129,6 +131,7 @@ const {
             </a>
           )}
         </li>
+      </div>
         // <a href={ link.href }><p>{ link.text }</p></a>
       ))}
     </ul>
