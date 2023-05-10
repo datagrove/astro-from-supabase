@@ -24,7 +24,7 @@ export interface Props {
 const {
   label = 'Toggle Menu',
   class:
-    className = 'ml-1.5 text-gray-500 dark:text-gray-400 focus:outline-none rounded-lg text-sm p-2.5 inline-flex items-center transition',
+    className = 'ml-1.5 text-dgSecondary dark:text-dgSecondaryDM focus:outline-none rounded-lg text-sm p-2.5 inline items-center transition',
   iconClass = 'w-6 h-6',
   iconName = 'tabler:menu',
   links=[]
@@ -32,22 +32,56 @@ const {
 ---
 <div class="relative">
   <button type="button" id="menu-toggle" class={ className } aria-label={ label } data-aw-toggle-menu>
-    <Icon 
-      name={ iconName } 
-      class={ iconClass } 
-      optimize={ false } 
-      id="menu-button"
-    />
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width="24" 
+      height="24" 
+      viewBox="0 0 24 24"
+    >
+      <style>
+        path {
+          fill: #245881;
+        }
+        @media (prefers-color-scheme: dark) {
+          path {
+            fill: #F5F5F5;
+          }
+        }
+      </style>
+      <path 
+        stroke="currentColor" 
+        stroke-linecap="round" 
+        stroke-width="1.5" 
+        d="M20 7H4m16 5H4m16 5H4"
+      />
+    </svg>
   </button>
 
   <button 
     id="menu-close-btn"
-    class="hidden absolute -top-3 -left-7"
+    class="hidden absolute -top-3 -left-8"
   >
-    X
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width="24" 
+      height="24" 
+      viewBox="0 0 24 24"
+    >
+      <style>
+        path {
+          fill: #245881;
+        }
+        @media (prefers-color-scheme: dark) {
+          path {
+            fill: #F5F5F5;
+          }
+        }
+      </style>
+      <path d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275q-.275-.275-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7q.275-.275.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275q.275.275.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275L12 13.4Z"/>
+    </svg>
   </button>
 
-  <div id="menu-link-div" class="absolute hidden w-screen h-screen top-5 right-0 bg-white px-8">
+  <div id="menu-link-div" class="absolute hidden w-screen h-screen top-5 right-0 bg-white dark:bg-black px-8">
 
     
     <ul id="toggle-list" class="">     
@@ -59,7 +93,7 @@ const {
               <div class="">
                 <button 
                   id="solutions-btn"
-                  class="text-lg pt-4">
+                  class="text-lg pt-4 text-dgSecondary dark:text-dgSecondaryDM">
                   { text } +
                 </button>  
               </div>  
@@ -73,7 +107,7 @@ const {
                 <div role="none">
                   { links?.map(({ text: text2, href: href2 }) => (
                     <a 
-                      class="text-lg" 
+                      class="text-lg text-accent dark:text-accentDM" 
                       href={ href2 } 
                       role="menuitem"
                     >
@@ -88,7 +122,7 @@ const {
             </div>
           ) : (
             <a 
-              class="text-lg" 
+              class="text-lg text-dgSecondary dark:text-dgSecondaryDM" 
               href={ href }
             >
               <p class="pt-4">{ text }</p>
