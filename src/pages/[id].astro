@@ -1,34 +1,37 @@
 ---
 import supabase from "../components/SupabaseClient";
 import Layout from "../layouts/Layout.astro";
+import fs from "fs";
 
 export function getStaticPaths() {
-  return [
-    {params: {id: 'pawpaw'}},
-    {params: {id: 'terms'}},
-  ];
-}
-
-interface Item {
-    name: string;
+  return [{ params: { id: "pawpaw" } }, { params: { id: "terms" } }];
 }
 
 const { id } = Astro.params;
 
 if (!id) {
-    return Astro.redirect("/404");
+  return Astro.redirect("/404");
 }
 
-const {data , error} = await supabase.storage.from('astro-markdown').download(id +'.md');
-console.log(data);
+const { data, error } = await supabase.storage
+  .from("astro-markdown")
+  .download(id + ".md");
 
-if(error) {
-    return Astro.redirect("/404");
+if (error) {
+  return Astro.redirect("/404");
 }
 
-const item = data as Item;
+const blob = data;
+const buffer = Buffer.from(await blob.arrayBuffer()).toString();
 
+const file = fs.writeFile('./src/pages/' + id + ".md", buffer.toString(), function (err: any) {
+if (err) {
+return console.log(err);
+}
+});
+
+// const content = fs.readFileSync( id + ".md", "utf8");
+// console.log(content);
+
+// const item = content;
 ---
-<Layout title={item.name}>
-    <p>{item}</p>
-</Layout>
