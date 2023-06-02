@@ -2,6 +2,7 @@
 import supabase from "../components/SupabaseClient";
 import Layout from "../layouts/Layout.astro";
 import fs from "fs";
+import Markdown from '@astrojs/markdown-component';
 
 export function getStaticPaths() {
   return [{ params: { id: "pawpaw" } }, { params: { id: "terms" } }];
@@ -24,14 +25,16 @@ if (error) {
 const blob = data;
 const buffer = Buffer.from(await blob.arrayBuffer()).toString();
 
-const file = fs.writeFile('./src/pages/' + id + ".md", buffer.toString(), function (err: any) {
+const file = fs.writeFile('/tmp/' + id + ".md", buffer.toString(), function (err: any) {
 if (err) {
 return console.log(err);
 }
 });
 
-// const content = fs.readFileSync( id + ".md", "utf8");
-// console.log(content);
+const content = fs.readFileSync('/tmp/'+ id + ".md", "utf8");
+console.log(content);
 
-// const item = content;
+const item = content;
 ---
+
+<Markdown content={item}></Markdown>
