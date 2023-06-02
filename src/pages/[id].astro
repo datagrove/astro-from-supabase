@@ -1,0 +1,34 @@
+---
+import supabase from "../components/SupabaseClient";
+import Layout from "../layouts/Layout.astro";
+
+export function getStaticPaths() {
+  return [
+    {params: {id: 'pawpaw'}},
+    {params: {id: 'terms'}},
+  ];
+}
+
+interface Item {
+    name: string;
+}
+
+const { id } = Astro.params;
+
+if (!id) {
+    return Astro.redirect("/404");
+}
+
+const {data , error} = await supabase.storage.from('astro-markdown').download(id +'.md');
+console.log(data);
+
+if(error) {
+    return Astro.redirect("/404");
+}
+
+const item = data as Item;
+
+---
+<Layout title={item.name}>
+    <p>{item}</p>
+</Layout>
