@@ -6,8 +6,21 @@ import { Markdown } from "astro-remote";
 
 //export const prerender = true;
 
+const { data: fileNames, error: fileListError } = await supabase.storage
+  .from("astro-markdown")
+  .list('');
+
+console.log(fileNames)
+
 export function getStaticPaths() {
-  return [{ params: { id: "pawpaw" } }, { params: { id: "terms" } }];
+  let files = [];
+  if (fileNames == null){
+    return [];
+  }
+  for (let i = 0; i < fileNames.length; i++) {
+    files.push({params: {id: fileNames[i]}}, );
+  }
+  return fileNames;
 }
 
 const { id } = Astro.params;
