@@ -1,13 +1,27 @@
 ---
 import supabase from "../components/SupabaseClient";
 import Layout from "../layouts/Layout.astro";
-import fs from "fs";
 import { Markdown } from "astro-remote";
 
-//export const prerender = true;
+export async function getStaticPaths() {
+  const { data: fileNames, error: fileListError } = await supabase.storage
+  .from("astro-markdown")
+  .list('base');
 
-export function getStaticPaths() {
-  return [{ params: { id: "pawpaw" } }, { params: { id: "terms" } }, { params: { id: "pawpaw (1)" } }];
+  let files = [];
+  if (fileNames == null){
+    return [];
+  }
+  for (let i = 0; i < fileNames.length; i++) {
+    let file = fileNames[i].name.split('.').shift();
+    if (file == ""){
+      continue;
+    } else {
+    files.push({params: {id: file}}, );
+    }
+  }
+  console.log(files);
+  return files;
 }
 
 const { id } = Astro.params;
@@ -18,7 +32,7 @@ if (!id) {
 
 const { data, error } = await supabase.storage
   .from("astro-markdown")
-  .download(id + ".md");
+  .download("base/" + id + ".md");
 
 if (error) {
   return Astro.redirect("/404");
@@ -27,11 +41,6 @@ if (error) {
 const blob = data;
 const buffer = Buffer.from(await blob.arrayBuffer()).toString();
 
-// const file = fs.writeFile('./src/pages/' + id + ".md", buffer.toString(), function (err: any) {
-// if (err) {
-// return console.log(err);
-// }
-// });
 ---
 <Layout title={id}>
 <Markdown content={buffer}/>
