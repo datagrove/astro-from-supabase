@@ -14,10 +14,11 @@ export async function getStaticPaths() {
   }
   for (let i = 0; i < fileNames.length; i++) {
     let file = fileNames[i].name.split('.').shift();
+    let fileType = fileNames[i].name.split('.').pop();
     if (file == ""){
       continue;
     } else {
-    files.push({params: {id: file}}, );
+    files.push({params: {id: file}, props: { type: "." + fileType}}, );
     }
   }
   console.log(files);
@@ -25,6 +26,7 @@ export async function getStaticPaths() {
 }
 
 const { id } = Astro.params;
+const { type } = Astro.props;
 
 if (!id) {
   return Astro.redirect("/404");
@@ -32,7 +34,7 @@ if (!id) {
 
 const { data, error } = await supabase.storage
   .from("astro-markdown")
-  .download("base/" + id + ".md");
+  .download("base/" + id + type);
 
 if (error) {
   return Astro.redirect("/404");
@@ -43,5 +45,5 @@ const buffer = Buffer.from(await blob.arrayBuffer()).toString();
 
 ---
 <Layout title={id}>
-<Markdown content={buffer}/>
+<Markdown content={buffer} sanitize={{allowComponents: true}}/>
 </Layout>
