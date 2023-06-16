@@ -2,12 +2,12 @@
 import supabase from "../components/SupabaseClient";
 import Layout from "../layouts/Layout.astro";
 import { Markdown } from "astro-remote";
-import Card from "../components/common/Card.astro";
+const components = await Astro.glob('../components/**/*.astro');
 
 export async function getStaticPaths() {
   const { data: fileNames, error: fileListError } = await supabase.storage
   .from("astro-markdown")
-  .list('base');
+  .list('mdx');
 
   let files = [];
   if (fileNames == null){
@@ -19,23 +19,23 @@ export async function getStaticPaths() {
     if (file == ""){
       continue;
     } else {
-    files.push({params: {id: file}, props: { type: "." + fileType}}, );
+    files.push({params: {mdx: file}, props: { type: "." + fileType}}, );
     }
   }
   console.log(files);
   return files;
 }
 
-const { id } = Astro.params;
+const { mdx } = Astro.params;
 const { type } = Astro.props;
 
-if (!id) {
+if (!mdx) {
   return Astro.redirect("/404");
 }
 
 const { data, error } = await supabase.storage
   .from("astro-markdown")
-  .download("base/" + id + type);
+  .download("mdx/" + mdx + type);
 
 if (error) {
   return Astro.redirect("/404");
@@ -44,7 +44,14 @@ if (error) {
 const blob = data;
 const buffer = Buffer.from(await blob.arrayBuffer()).toString();
 
+const componentsList = [];
+for (let i = 0; i < components.length; i++) {
+  componentsList.push('{' + components[i].file.split('/').pop()?.split('.').shift() + '.default' +'},');
+  console.log(...componentsList);
+}
+
+
 ---
-<Layout title={id}>
-<Markdown content={buffer}/>
+<Layout title={mdx}>
+<Markdown content={buffer} sanitize={{allowComponents: true}} components={{...componentsList}}/>
 </Layout>
