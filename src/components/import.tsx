@@ -1,8 +1,4 @@
----
 import supabase from "../components/SupabaseClient";
-import Layout from "../layouts/Layout.astro";
-import { Markdown } from "astro-remote";
-const components = await Astro.glob('../components/**/*.astro');
 
 export async function getStaticPaths() {
   const { data: fileNames, error: fileListError } = await supabase.storage
@@ -42,17 +38,3 @@ if (error) {
 }
 
 const file = new File([data], mdx + type, {type: data.type,});
-// const buffer = Buffer.from(await blob.arrayBuffer()).toString();
-import { Content } from 'data/content';
-
-// const componentsList = [];
-// for (let i = 0; i < components.length; i++) {
-//   componentsList.push('{' + components[i].file.split('/').pop()?.split('.').shift() + '.default' +'},');
-//   console.log(...componentsList);
-// }
-
-
----
-<Layout title={mdx}>
-<Content/>
-</Layout>
