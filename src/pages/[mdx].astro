@@ -2,6 +2,7 @@
 import supabase from "../components/SupabaseClient";
 import Layout from "../layouts/Layout.astro";
 import { Markdown } from "astro-remote";
+import { compile } from "'@mdx-js/mdx'
 const components = await Astro.glob('../components/**/*.astro');
 
 export async function getStaticPaths() {
@@ -19,31 +20,36 @@ export async function getStaticPaths() {
     if (file == ""){
       continue;
     } else {
-    files.push({params: {mdx: file}, props: { type: "." + fileType}}, );
+    files.push({params: {fileName: file}, props: { type: "." + fileType}}, );
     }
   }
   console.log(files);
   return files;
 }
 
-const { mdx } = Astro.params;
+const { fileName } = Astro.params;
 const { type } = Astro.props;
 
-if (!mdx) {
+if (!fileName) {
   return Astro.redirect("/404");
 }
 
 const { data, error } = await supabase.storage
   .from("astro-markdown")
-  .download("mdx/" + mdx + type);
+  .download("mdx/" + fileName + type);
 
 if (error) {
   return Astro.redirect("/404");
 }
 
-const file = new File([data], mdx + type, {type: data.type,});
+const file = await compile(data);
+
+// const blob = data;
 // const buffer = Buffer.from(await blob.arrayBuffer()).toString();
-import { Content } from 'data/content';
+
+// const file = new File([data], fileName + type, {type: data.type,});
+// const buffer = Buffer.from(await file.arrayBuffer()).toString();
+// import  Content  from '../components/[file].astro';
 
 // const componentsList = [];
 // for (let i = 0; i < components.length; i++) {
@@ -53,6 +59,6 @@ import { Content } from 'data/content';
 
 
 ---
-<Layout title={mdx}>
-<Content/>
+<Layout title={fileName}>
+  <Fragment set:html={file} />
 </Layout>
